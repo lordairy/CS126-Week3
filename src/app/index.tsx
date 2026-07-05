@@ -52,12 +52,12 @@ export default function HomeScreen() {
         <ThemedView style={styles.heroSection}>
           <AnimatedIcon />
           <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
+            Welcome to Yen's Mobile App!
           </ThemedText>
         </ThemedView>
 
         <ThemedText type="code" style={styles.code}>
-          get started
+          Week 2 Activity
         </ThemedText>
 
         <ThemedView type="backgroundElement" style={styles.stepContainer}>
