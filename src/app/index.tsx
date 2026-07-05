@@ -1,115 +1,86 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+// July 5, 2026
+// Week 4 Activity - Created a personal profile card using View, Text, Image, and StyleSheet.
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
-
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
-  return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 export default function HomeScreen() {
-
-  const myName = "Yen";
-
-  const welcomeStudent = (name: string) => {
-    return `Welcome to Mobile App Development, ${name}!`;
-  };
-
-  const classmates = [
-    myName,
-    "Ashley",
-    "Miguel",
-    "Sophia",
-    "John",
-  ];
-
-  console.log(classmates.map(name => welcomeStudent(name)));
-
   return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to Yen's Mobile App!
-          </ThemedText>
-        </ThemedView>
+    <View style={styles.container}>
+      <View style={styles.card}>
+        <Image
+          source={require('../../assets/images/profile.jpg')}
+          style={styles.profileImage}
+        />
 
-        <ThemedText type="code" style={styles.code}>
-          Week 2 Activity
-        </ThemedText>
+        <Text style={styles.name}>Lord Cañete</Text>
 
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
+        <Text style={styles.course}>🎨 BS Multimedia Arts</Text>
 
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+        <Text style={styles.bio}>
+          ✨ Hi! I'm Yen, a Multimedia Arts student who loves drawing,
+          makeup, storytelling, and creating digital content.
+          {"\n\n"}
+          I'm currently learning React Native and exploring mobile app
+          development while improving my skills in design and creativity.
+        </Text>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#E8F5E9',
     justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
     alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
+    padding: 20,
   },
-  heroSection: {
+
+  card: {
+    backgroundColor: '#FFFFFF',
+    width: 340,
+    borderRadius: 20,
+    padding: 30,
     alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    elevation: 8,
   },
-  title: {
+
+  profileImage: {
+    width: 180,
+    height: 180,
+    borderRadius: 90,
+    borderWidth: 4,
+    borderColor: '#66BB6A',
+    marginBottom: 20,
+  },
+
+  name: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#2E7D32',
+    marginBottom: 8,
+  },
+
+  course: {
+    fontSize: 18,
+    color: '#666',
+    marginBottom: 20,
+    fontWeight: '600',
+  },
+
+  bio: {
+    fontSize: 16,
+    color: '#444',
     textAlign: 'center',
-  },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+    lineHeight: 24,
   },
 });
