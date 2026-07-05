@@ -1,9 +1,12 @@
 // July 5, 2026
-// Week 4 Activity - Created a personal profile card using View, Text, Image, and StyleSheet.
+// Week 5 Activity - Updated the profile card using useState and TextInput.
 
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function HomeScreen() {
+  const [name, setName] = useState('Lord Cañete');
+
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -12,7 +15,14 @@ export default function HomeScreen() {
           style={styles.profileImage}
         />
 
-        <Text style={styles.name}>Lord Cañete</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Type your name here..."
+          value={name}
+          onChangeText={setName}
+        />
+
+        <Text style={styles.name}>{name}</Text>
 
         <Text style={styles.course}>🎨 BS Multimedia Arts</Text>
 
@@ -61,6 +71,17 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: '#66BB6A',
     marginBottom: 20,
+  },
+
+  input: {
+    width: '100%',
+    borderWidth: 1,
+    borderColor: '#66BB6A',
+    borderRadius: 10,
+    padding: 12,
+    marginBottom: 20,
+    backgroundColor: '#FFFFFF',
+    fontSize: 16,
   },
 
   name: {
