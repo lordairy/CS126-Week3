@@ -29,6 +29,23 @@ function getDevMenuHint() {
 }
 
 export default function HomeScreen() {
+
+  const myName = "Yen";
+
+  const welcomeStudent = (name: string) => {
+    return `Welcome to Mobile App Development, ${name}!`;
+  };
+
+  const classmates = [
+    myName,
+    "Ashley",
+    "Miguel",
+    "Sophia",
+    "John",
+  ];
+
+  console.log(classmates.map(name => welcomeStudent(name)));
+
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
